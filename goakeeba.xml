@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4.0" type="plugin" group="system" method="upgrade">
+	<name>plugin Système Go Akeeba</name>
+	<author>conseilgouz</author>
+	<creationDate>2021 October</creationDate>
+	<copyright>Copyright (C) 2021 ConseilGouz. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
+	<authorUrl>www.conseilgouz.com</authorUrl>
+	<version>2.0.0</version>
+	<description><![CDATA[<p>Plugin Système GoAkeeba : Version 2.0.0.<br>Lancement d'akeeba backup à heure fixe.<br><br><a href="index.php?option=com_plugins&filter_folder=system&filter_element=goakeeba">N'oubliez pas d'activer ce plugin.</a><br><br>Note : <a href="index.php?option=com_config&view=component&component=com_akeebabackup#frontend" target="_blank">dans la configuration d'Akeeba</a>, onglet Sauvegarde Frontal, activez Enable Legacy Front-end Backup API (remote CRON jobs) et saisissez un mot de passe qui est à utiliser dans les paramètres de ce plugin.<br></p>]]>
+	</description>
+	<files>
+		<filename plugin="goakeeba">goakeeba.php</filename>
+	</files>
+    <languages>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic" >
+				<field name="xdays" type="text" 
+					default="1" 
+					size="5" 
+					label="Controle tous les x jours"
+					description="Périodicité en jour"
+				/>
+				
+				<field name="time" type="text" 
+					default="00:00" 
+					size="5" 
+					label="Heure d'execution"  
+					description="Heure d'execution"
+				/>
+				<field name="freq" type="hidden" 
+					default="1" 
+					size="5" 
+					label="Contrôle x fois par jour"
+					description="Nombre de contrôle par jour"
+				/>
+				<field name="profile" type="text" 
+					default="1" 
+					size="5" 
+					label="No de Profile "
+					description="No de profile Akeeba à lancer"
+				/>
+				<field name="pass" type="text" 
+					default="" 
+					size="30" 
+					label="Mot secret"
+					description="Mot secret Akeeba"
+				/>
+				<field name="mode" type="radio"
+				default="curl"
+				label="Mode lancement"
+				description="SMode de lancement de la sauvegarde Curl ou Redirection (Curl recommandé)" 
+				class="btn-group btn-group-yesno">
+					<option value="curl">Curl</option>
+					<option value="redir">Redirect</option>
+				</field>
+				
+				<field name="debug" type="radio"
+				default="0"
+				label="Lancer à la mise à jour"
+				description="Souhaitez-vous lancer le plugin à la mise à jour ? permet de tester sans attendre le délai" 
+				class="btn-group btn-group-yesno">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field name="log" type="radio"
+				default="0"
+				label="Log des actions"
+				description="Souhaitez-vous garder une trace du plugin ? si oui, un fichier goakeeba.trace.log sera créé dans le répertoire logs" 
+				class="btn-group btn-group-yesno">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+  <updateservers>
+    <server type="extension" name="goakeeba" priority="1">https://www.conseilgouz.com/updates/plg_system_goakeeba_update.xml</server>
+   </updateservers>
+	
+</extension>
